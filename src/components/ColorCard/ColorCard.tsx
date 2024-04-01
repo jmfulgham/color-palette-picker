@@ -1,16 +1,12 @@
 import { Color } from "../../types";
 import { getLegibleTextColor, hexToRgb } from "../../util";
-
-import Rating from "../Rating/Rating.tsx";
-
+import './ColorCard.css'
 interface Props {
   color: Color;
-  updateColorRating: () => void;
 }
 
 export function ColorCard({
-  color: { name, hex, rating },
-  updateColorRating,
+  color: { name, hex },
 }: Props) {
   const backgroundColor = hex;
   const contrastingColor = getLegibleTextColor(hex);
@@ -18,16 +14,11 @@ export function ColorCard({
 
   // @TODO: implement hexToRgb and pass rgb() color to `style` prop.
   // const color = hexToRgb(contrastingColor);
-  // @TODO: Add a function to update a color's rating
 
   return (
-    <div className="colorCard" style={{ backgroundColor, color }}>
-      <h2>Name: {name}</h2>
-      <p>
-        Color: {hex} <input type="color" value={hex} />
-      </p>
-      {/* <div>Rating: {rating}</div> */}
-      <Rating handleChangeRating={updateColorRating} rating={rating} />
+    <div className="color-card-container" style={{ backgroundColor, color }}>
+      <h2>{name.toLowerCase()}</h2>
+      <p>{hex}</p>
     </div>
   );
 }
