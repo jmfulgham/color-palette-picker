@@ -13,10 +13,9 @@ import "./ColorSelector.css";
 
 interface Props {
   addColor: (color: Color) => void;
-  handleDupes: (colorName: Color) => Color[]
 }
 
-export function ColorSelector({ addColor, handleDupes}: Props) {
+export function ColorSelector({ addColor}: Props) {
   const [name, setName] = useState("");
 
   // @TODO: augment `hex` state to support multiple color formats.
@@ -24,7 +23,6 @@ export function ColorSelector({ addColor, handleDupes}: Props) {
   const [error, setError] = useState<boolean>(false);
   const [color, setColor]= useState<Color>({name: "", hex: "#fff"})
   const handleSaveColor = () => {
-    handleDupes(color)
     if(!name){
       setError(true);
       return
