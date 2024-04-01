@@ -1,0 +1,64 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  width: 100%;
+}
+
+html {
+  box-sizing: content-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a {
+  color: var(--COLOR--link--hover);
+  text-decoration: inherit;
+  font-weight: 500;
+}
+
+a:hover {
+  color: var(--COLOR--link--hover);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: var(--LAYOUT--SIZE--border-radius);
+
+  cursor: pointer;
+
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: var(--COLOR--link--hover);
+}
+
+/* @TODO: Implement focus state for buttons. */
+button {
+}

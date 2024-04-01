@@ -1,0 +1,27 @@
+.colorPalette {
+  background-color: var(--COLOR--ColorSelector--background);
+  border-radius: var(--LAYOUT--SIZE--border-radius);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 32px;
+  width: 100%;
+}
+
+.colorPalette .colorCard {
+  border-radius: var(--LAYOUT--SIZE--border-radius);
+
+  border: 1px solid white;
+  padding: 1rem;
+  min-height: 5rem;
+  min-width: 5rem;
+}
+
+.colorPalette .colorCard p,
+.colorPalette .colorCard h2,
+.colorPalette .colorCard input,
+.colorPalette .colorCard div:last-child {
+  display: none;
+}

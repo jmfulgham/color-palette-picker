@@ -1,0 +1,37 @@
+.colorSelector {
+  /*background-color: var(--COLOR--ColorSelector--background);*/
+  border-radius: var(--LAYOUT--SIZE--border-radius);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 32px;
+  width: 100%;
+}
+
+.colorName {
+  min-width: 400px;
+}
+
+.colorSelector > div {
+  display: flex;
+  flex-direction: column;
+  place-self: center;
+}
+
+.colorSelector > div + div {
+  margin-left: 20px;
+}
+
+.colorSelector label {
+  font-weight: 500;
+}
+
+.colorSelector label {
+  display: block;
+}
+
+.colorSelector input[type="text"] {
+  padding: 8px 12px;
+}
