@@ -7,33 +7,41 @@ import type {
   SetStateAction,
 } from "react";
 
-import type { Color, HexColor } from "../../types/colors.tsx";
+import type { Color, HexColor } from "../../types";
 
 import "./ColorSelector.css";
 
 interface Props {
   addColor: (color: Color) => void;
+  handleDupes: (colorName: Color) => Color[]
 }
 
-export function ColorSelector({ addColor}: Props) {
+export function ColorSelector({ addColor, handleDupes}: Props) {
   const [name, setName] = useState("");
 
   // @TODO: augment `hex` state to support multiple color formats.
-  const [hex, setHex] = useState<HexColor>("#000000");
-
+  const [hex, setHex] = useState<HexColor>("#fff");
+  const [error, setError] = useState<boolean>(false);
+  const [color, setColor]= useState<Color>({name: "", hex: "#fff"})
   const handleSaveColor = () => {
-    addColor({ name, hex, rating: 0 });
+    handleDupes(color)
+    if(!name){
+      setError(true);
+      return
+    }
+    if (error) setError(false)
+    addColor({ name, hex});
   };
 
   return (
-    // @TODO: re-implement without `form` element and `onSubmit` method.
-    <div className="colorSelector">
-      <Name update={setName} />
+    <>
+    <div className="color-selector-container">
+      <Name update={setName}/>
       <Color update={setHex} />
-      <div>
-        <button onClick={handleSaveColor}>Save Color</button>
-      </div>
+      <button className={'color-save-btn'} onClick={handleSaveColor}>Save Color</button>
     </div>
+      {error && <p className={'error-text'}>Please add a name</p>}
+      </>
   );
 }
 
@@ -48,8 +56,7 @@ function Name({ update }: Update) {
   };
 
   return (
-    <div>
-      <label htmlFor="colorName">Color name:</label>
+    <div className={'color-selector-input'}>
       <input
         className="colorName"
         id="colorName"
@@ -60,6 +67,7 @@ function Name({ update }: Update) {
         placeholder="Enter a unique color name"
         minLength={1}
       />
+
     </div>
   );
 }
@@ -70,8 +78,7 @@ function Color({ update }: Update) {
   };
 
   return (
-    <div>
-      <label htmlFor="color">Color:</label>
+    <div className={"color-picker"}>
       <input name="color" id="color" type="color" onChange={onChange} />
     </div>
   );
