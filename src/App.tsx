@@ -12,12 +12,8 @@ function App() {
   // @TODO: Add a function to remove a color from the list of colors
   const removeColor = (colorName: string) => {};
 
-  const updateColorRating = (index: number) => {
-    console.log(index);
-  };
-
   return (
-    <>
+    <div className={'parent-container'}>
       <h1>Color Palette Builder</h1>
       <div className="card">
         <p>
@@ -30,11 +26,10 @@ function App() {
           <ColorCard
             key={color.name}
             color={color}
-            updateColorRating={updateColorRating}
           />
         ))}
       </section>
-    </>
+    </div>
   );
 }
 

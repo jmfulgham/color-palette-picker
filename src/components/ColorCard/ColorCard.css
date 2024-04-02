@@ -1,10 +1,17 @@
 .color-card-container {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     height: 90px;
     margin: 10px 0 10px 0;
     padding: 8px 12px 8px 14px;
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+}
+
+.color-details {
+    align-self:center ;
+
+}
+.color-card-picker {
+    align-self: flex-end;
 }
