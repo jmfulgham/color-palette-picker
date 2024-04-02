@@ -25,7 +25,7 @@ export function ColorCard({
       <div className={'color-details'}><h2>{name.toLowerCase()}</h2>
       <p>{hex}</p></div>
       <div className={'color-card-picker'}>
-        <input name="color-card-selection" id="color" type="color" onChange={e=>handleChange(e)}/>
+        <input name="color-card-selection" id="color" type="color" value={backgroundColor} onChange={e=>handleChange(e)}/>
       </div>
     </div>
   );
