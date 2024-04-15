@@ -1,5 +1,6 @@
 .color-card-container {
     display: flex;
+    width: 200px;
     justify-content: space-between;
     height: 90px;
     margin: 10px 0 10px 0;
@@ -14,4 +15,8 @@
 }
 .color-card-picker {
     align-self: flex-end;
+}
+
+#color {
+    width: 25px;
 }
