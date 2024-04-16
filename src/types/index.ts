@@ -1,1 +1,1 @@
-export { Color, HexColor, Rating } from "./colors";
+export { Color, HexColor, RGB } from "./colors";

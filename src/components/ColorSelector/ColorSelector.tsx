@@ -2,14 +2,13 @@ import { useState } from "react";
 import type {
   ChangeEvent,
   Dispatch,
-  FormEvent,
-  ReactEventHandler,
   SetStateAction,
 } from "react";
 
-import type { Color, HexColor } from "../../types";
+import type { Color, HexColor, RGB} from "../../types";
 
 import "./ColorSelector.css";
+import { hexToRgb } from "../../util";
 
 interface Props {
   addColor: (color: Color) => void;
@@ -22,6 +21,7 @@ export function ColorSelector({ addColor}: Props) {
   const [hex, setHex] = useState<HexColor>("#fff");
   const [error, setError] = useState<boolean>(false);
   const [color, setColor]= useState<Color>({name: "", hex: "#fff"})
+
   const handleSaveColor = () => {
     if(!name){
       setError(true);
@@ -29,6 +29,7 @@ export function ColorSelector({ addColor}: Props) {
     }
     if (error) setError(false)
     addColor({ name, hex});
+    // handleColors()
   };
 
   return (

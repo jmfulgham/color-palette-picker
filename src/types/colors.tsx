@@ -3,3 +3,9 @@ export interface Color {
   hex: HexColor;
 }
 export type HexColor = `#${string}`;
+
+export type RGB = {
+  r: number,
+  g: number,
+  b: number,
+}
