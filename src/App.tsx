@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 
 import { ColorCard, ColorSelector } from "./components";
-import { Color } from "./types";
+import { Color, RGB } from "./types";
 import "./App.css";
-import { RGB } from "./util/getLegibleTextColor.ts";
 import { hexToRgb } from "./util";
 
 function App() {
@@ -16,6 +15,8 @@ function App() {
     const rgbCodes = colors.map(color=>hexToRgb(color.hex));
     const decreaseColor: RGB = { r: 0, g: 0, b: 0 }
     const increaseColor: RGB = { r: 0, g: 0, b: 0 }
+    const highColor: RGB = { r: 0, g: 0, b: 0 }
+    const lowColor: RGB = { r: 0, g: 0, b: 0 }
     const newColors: RGB[] = []
   //TODO fix ignored lines
     rgbCodes.forEach(rgb => {
@@ -28,22 +29,46 @@ function App() {
             decreaseColor[ltr] = rgb[ltr] - 30
           }
         }
-        newColors.push(decreaseColor)
         //increase each color as long as it's not over 255
         for (const ltr in rgb) {
           // @ts-ignore
           if ((rgb[ltr] <= 225) && (rgb[ltr] > 0)) {
             // @ts-ignore
-            increaseColor[ltr] = rgb[ltr] + 30
+            increaseColor[ltr] = rgb[ltr] + 25
           } else{
             // @ts-ignore
             increaseColor[ltr] = rgb[ltr]
           }
         }
-        newColors.push(increaseColor)
-        setComplementaryColors([...newColors])
+        for (const ltr in rgb) {
+          // @ts-ignore
+          if ((rgb[ltr] <= 205) && (rgb[ltr] > 0)) {
+            // @ts-ignore
+            highColor[ltr] = rgb[ltr] + 50
+          }  // @ts-ignore
+          if ((rgb[ltr] <= 215) && (rgb[ltr] > 0)) {
+            // @ts-ignore
+            highColor[ltr] = rgb[ltr] + 40
+          } else{
+            // @ts-ignore
+            highColor[ltr] = rgb[ltr]
+          }
+        }
+
+        for (const ltr in rgb) {
+          // @ts-ignore
+          if ((rgb[ltr] < 255) && (rgb[ltr] > 0)) {
+            // @ts-ignore
+            lowColor[ltr] = rgb[ltr] - 60
+          }
+        }
       }
     })
+    newColors.push(highColor)
+    newColors.push(increaseColor)
+    newColors.push(decreaseColor)
+    newColors.push(lowColor)
+    setComplementaryColors([...newColors])
   }
 
   useEffect(()=>{

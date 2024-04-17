@@ -2,7 +2,7 @@ import { HexColor, RGB } from "../../types";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import "./AccentColors.css";
 import AccentColor from "../AccentColor/AccentColor.tsx";
-import { hexToRgb } from "../../util";
+import { hexToRgb, rgbToHex } from "../../util";
 
 type AccentColorProps = {
   color: HexColor;
@@ -13,25 +13,23 @@ type AccentColorProps = {
 }
 
 const AccentColors = ({ color, expanded, setExpanded, handleBlur, complementaryColors }: AccentColorProps) => {
+  const [complementHex, setComplementHex] = useState<string[]>([])
   const handleClose = () => {
     setExpanded(false);
   };
-  const formatComplementaryColors = ()=>{
-    //{ r: 116, g: 78, b: 212 }
-    //rgb(116 78 212)
-    complementaryColors.map((color)=>{
-      for(const ltr in color){
-        console.log(ltr)
-      }
-    })
-  }
-  // console.log(complementaryColors)
-  formatComplementaryColors()
+
+  useEffect(()=>{
+    let hexCodes: HexColor[] = complementaryColors.map((color)=>(rgbToHex(color)))
+    setComplementHex(hexCodes)
+  }, [complementaryColors])
+
+  console.log(complementHex)
+
   return (<dialog open={expanded} onBlur={handleBlur} onClick={handleClose} className={"ac-modal-container"}
                   id={"ac-modal-dialog"}>
     <div className={"ac-modal-header"}><h2>Accent Colors: {color}</h2></div>
     <div className={"accent-colors-container"}>
-      {complementaryColors.map((color, i) => <AccentColor color={color} key={i} />)}
+      {complementHex.map((color, i) => <AccentColor color={color} key={i} />)}
     </div>
   </dialog>);
 };

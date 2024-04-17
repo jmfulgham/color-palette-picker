@@ -1,4 +1,4 @@
-import { type HexColor } from "../types";
+import { type HexColor, RGB } from "../types";
 
 export function hexToRgb(hex: HexColor) {
   const regex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
