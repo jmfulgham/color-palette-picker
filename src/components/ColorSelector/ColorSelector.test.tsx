@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import ColorSelector from "./ColorSelector.tsx";
+import { ColorSelector } from "./ColorSelector.tsx";
 import { vi } from "vitest";
 
 describe("ColorSelector", () => {
