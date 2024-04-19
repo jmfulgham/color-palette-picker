@@ -1,33 +1,43 @@
-import { Color } from "../../types";
-import { getLegibleTextColor, hexToRgb } from "../../util";
-
-import Rating from "../Rating/Rating.tsx";
+import { Color, HexColor, RGB } from "../../types";
+import { getLegibleTextColor, handleComplementaryColors, hexToRgb } from "../../util";
+import './ColorCard.css'
+import React, { ChangeEvent, useEffect, useState } from "react";
+import AccentColors from "../AccentColors/AccentColors.tsx";
 
 interface Props {
   color: Color;
-  updateColorRating: () => void;
 }
 
 export function ColorCard({
-  color: { name, hex, rating },
-  updateColorRating,
-}: Props) {
-  const backgroundColor = hex;
-  const contrastingColor = getLegibleTextColor(hex);
-  const color = contrastingColor;
+                            color: { name, hex },
+                          }: Props) {
+  const [backgroundColor, setBackgroundColor] = useState<HexColor|string>(hex);
+  const color = getLegibleTextColor(hex)
+  const [contrastingColor, setContrastingColor] = useState(color);
+  const [expanded, setExpanded] = useState<boolean>(false);
+  const [complementaryColors, setComplementaryColors] = useState<RGB[]>([]);
+  useEffect(()=>{
+    console.log("effect called", name, hex)
+    setComplementaryColors(handleComplementaryColors({name, hex}))
+  }, [name, hex])
 
   // @TODO: implement hexToRgb and pass rgb() color to `style` prop.
   // const color = hexToRgb(contrastingColor);
-  // @TODO: Add a function to update a color's rating
+  const handleChange = (e: ChangeEvent<HTMLInputElement>)=>{
+    setBackgroundColor(e.target.value)
+    setContrastingColor(contrastingColor)
+  }
+
+  const handleModal = (): void => setExpanded(!expanded);
 
   return (
-    <div className="colorCard" style={{ backgroundColor, color }}>
-      <h2>Name: {name}</h2>
-      <p>
-        Color: {hex} <input type="color" value={hex} />
-      </p>
-      {/* <div>Rating: {rating}</div> */}
-      <Rating handleChangeRating={updateColorRating} rating={rating} />
+    <div className="color-card-container" style={{ backgroundColor, color }} onClick={handleModal} onBlur={handleModal}>
+      <div className={'color-details'}><h2>{name.toLowerCase()}</h2>
+      <p>{hex}</p></div>
+      <div className={'color-card-picker'}>
+        <input name="color-card-selection" id="color" type="color" value={backgroundColor} onChange={e=>handleChange(e)}/>
+      </div>
+      {expanded && <AccentColors complementaryColors={complementaryColors} handleBlur={handleModal} expanded={expanded} setExpanded={setExpanded}/>}
     </div>
   );
 }

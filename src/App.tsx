@@ -1,23 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { ColorCard, ColorSelector } from "./components";
-import { Color } from "./types";
+import { Color, RGB } from "./types";
 import "./App.css";
+import { handleComplementaryColors, hexToRgb } from "./util";
 
 function App() {
   const [colors, setColors] = useState<Color[]>([]);
 
   const addColor = (color: Color) => setColors([...colors, color]);
 
-  // @TODO: Add a function to remove a color from the list of colors
-  const removeColor = (colorName: string) => {};
 
-  const updateColorRating = (index: number) => {
-    console.log(index);
-  };
+  // @TODO: Add a function to remove a color from the list of colors
+  // const removeColor = (colorName: string) => {};
 
   return (
-    <>
+    <div className={'parent-container'}>
       <h1>Color Palette Builder</h1>
       <div className="card">
         <p>
@@ -30,11 +28,10 @@ function App() {
           <ColorCard
             key={color.name}
             color={color}
-            updateColorRating={updateColorRating}
           />
         ))}
       </section>
-    </>
+    </div>
   );
 }
 

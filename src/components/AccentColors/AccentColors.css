@@ -1,0 +1,21 @@
+dialog {
+    width: 75%;
+    height: 300px;
+}
+
+.ac-modal-container {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 20px;
+    border-radius: 10px;
+    width: 500px;
+    height: 400px;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #fff; /* Fallback color */
+}
+
+.accent-colors-container {
+    display: flex;
+    flex-direction: column;
+}
