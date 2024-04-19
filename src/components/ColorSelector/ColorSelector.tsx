@@ -5,10 +5,9 @@ import type {
   SetStateAction,
 } from "react";
 
-import type { Color, HexColor, RGB} from "../../types";
+import type { Color, HexColor} from "../../types";
 
 import "./ColorSelector.css";
-import { hexToRgb } from "../../util";
 
 interface Props {
   addColor: (color: Color) => void;
@@ -20,7 +19,6 @@ export function ColorSelector({ addColor}: Props) {
   // @TODO: augment `hex` state to support multiple color formats.
   const [hex, setHex] = useState<HexColor>("#fff");
   const [error, setError] = useState<boolean>(false);
-  const [color, setColor]= useState<Color>({name: "", hex: "#fff"})
 
   const handleSaveColor = () => {
     if(!name){

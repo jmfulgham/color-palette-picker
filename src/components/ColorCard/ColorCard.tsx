@@ -1,21 +1,24 @@
 import { Color, HexColor, RGB } from "../../types";
-import { getLegibleTextColor, hexToRgb } from "../../util";
+import { getLegibleTextColor, handleComplementaryColors, hexToRgb } from "../../util";
 import './ColorCard.css'
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import AccentColors from "../AccentColors/AccentColors.tsx";
 
 interface Props {
   color: Color;
-  complementaryColors: RGB[];
 }
 
 export function ColorCard({
-                            color: { name, hex }, complementaryColors
+                            color: { name, hex },
                           }: Props) {
   const [backgroundColor, setBackgroundColor] = useState<HexColor|string>(hex);
   const color = getLegibleTextColor(hex)
   const [contrastingColor, setContrastingColor] = useState(color);
   const [expanded, setExpanded] = useState<boolean>(false);
+  const [complementaryColors, setComplementaryColors] = useState<RGB[]>([]);
+  useEffect(()=>{
+    setComplementaryColors(handleComplementaryColors({name, hex}))
+  }, [color])
 
   // @TODO: implement hexToRgb and pass rgb() color to `style` prop.
   // const color = hexToRgb(contrastingColor);
