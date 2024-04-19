@@ -21,8 +21,6 @@ export function ColorCard({
     setComplementaryColors(handleComplementaryColors({name, hex}))
   }, [name, hex])
 
-  // @TODO: implement hexToRgb and pass rgb() color to `style` prop.
-  // const color = hexToRgb(contrastingColor);
   const handleChange = (e: ChangeEvent<HTMLInputElement>)=>{
     setBackgroundColor(e.target.value)
     setContrastingColor(contrastingColor)
