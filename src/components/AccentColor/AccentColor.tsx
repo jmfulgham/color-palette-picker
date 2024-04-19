@@ -6,7 +6,12 @@ interface AccentColorProps {
 }
 
 const AccentColor = ({ color, key }: AccentColorProps) => {
-  return (<div className={`accent-color`} style={{ backgroundColor: color }} key={`accent-color-${key}`} />);
+  return (<div className={'parent'}>
+    <div className={`accent-color`} style={{ backgroundColor: color }} key={`accent-color-${key}`} />
+    <div className={'color-code'}>
+      {color}
+    </div>
+  </div>);
 }
 
 export default AccentColor;

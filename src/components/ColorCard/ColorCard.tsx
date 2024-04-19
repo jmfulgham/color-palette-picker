@@ -17,8 +17,9 @@ export function ColorCard({
   const [expanded, setExpanded] = useState<boolean>(false);
   const [complementaryColors, setComplementaryColors] = useState<RGB[]>([]);
   useEffect(()=>{
+    console.log("effect called", name, hex)
     setComplementaryColors(handleComplementaryColors({name, hex}))
-  }, [color])
+  }, [name, hex])
 
   // @TODO: implement hexToRgb and pass rgb() color to `style` prop.
   // const color = hexToRgb(contrastingColor);
@@ -36,7 +37,7 @@ export function ColorCard({
       <div className={'color-card-picker'}>
         <input name="color-card-selection" id="color" type="color" value={backgroundColor} onChange={e=>handleChange(e)}/>
       </div>
-      {expanded && <AccentColors complementaryColors={complementaryColors} color={hex} handleBlur={handleModal} expanded={expanded} setExpanded={setExpanded}/>}
+      {expanded && <AccentColors complementaryColors={complementaryColors} handleBlur={handleModal} expanded={expanded} setExpanded={setExpanded}/>}
     </div>
   );
 }

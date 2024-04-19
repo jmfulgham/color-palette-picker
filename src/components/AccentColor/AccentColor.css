@@ -1,6 +1,21 @@
+.parent {
+    display: flex;
+    flex-direction: row;
+}
+
 .accent-color {
     margin: 10px 0 10px 0;
     height: 60px;
     width: 100%;
     border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+}
+
+.color-code {
+    writing-mode: vertical-rl;
+    text-orientation: sideways;
+    text-align: center;
+    font-weight: bold;
+    margin: 2px;
+    font-size: 0.8rem;
 }
