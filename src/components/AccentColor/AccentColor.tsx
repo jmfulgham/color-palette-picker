@@ -1,4 +1,5 @@
 import "./AccentColor.css";
+import { ReactNode } from "react";
 
 interface AccentColorProps {
   color: string;

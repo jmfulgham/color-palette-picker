@@ -1,12 +1,17 @@
-dialog {
-    width: 75%;
-    height: 300px;
+.ac-modal-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.close-btn {
+    border-radius: 50px;
+    background-color: #e9e9e9;
+}
 .ac-modal-container {
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
+    position: fixed;
+    z-index: 1;
     top: 20px;
     border-radius: 10px;
     width: 500px;

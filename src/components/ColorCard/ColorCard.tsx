@@ -1,5 +1,5 @@
 import { Color, HexColor, RGB } from "../../types";
-import { getLegibleTextColor, handleComplementaryColors, hexToRgb } from "../../util";
+import { getLegibleTextColor, handleComplementaryColors } from "../../util";
 import './ColorCard.css'
 import React, { ChangeEvent, useEffect, useState } from "react";
 import AccentColors from "../AccentColors/AccentColors.tsx";
@@ -7,7 +7,11 @@ import AccentColors from "../AccentColors/AccentColors.tsx";
 interface Props {
   color: Color;
 }
-
+//TODO update change of color to change of accents
+// rename accents and complements (wrong term for the colors)
+// handle close modal and change onBlur
+// add tests
+// make sure responsive
 export function ColorCard({
                             color: { name, hex },
                           }: Props) {
@@ -16,8 +20,8 @@ export function ColorCard({
   const [contrastingColor, setContrastingColor] = useState(color);
   const [expanded, setExpanded] = useState<boolean>(false);
   const [complementaryColors, setComplementaryColors] = useState<RGB[]>([]);
+
   useEffect(()=>{
-    console.log("effect called", name, hex)
     setComplementaryColors(handleComplementaryColors({name, hex}))
   }, [name, hex])
 
@@ -29,13 +33,13 @@ export function ColorCard({
   const handleModal = (): void => setExpanded(!expanded);
 
   return (
-    <div className="color-card-container" style={{ backgroundColor, color }} onClick={handleModal} onBlur={handleModal}>
+    <div className="color-card-container" style={{ backgroundColor, color }} onClick={handleModal}>
       <div className={'color-details'}><h2>{name.toLowerCase()}</h2>
       <p>{hex}</p></div>
       <div className={'color-card-picker'}>
         <input name="color-card-selection" id="color" type="color" value={backgroundColor} onChange={e=>handleChange(e)}/>
       </div>
-      {expanded && <AccentColors complementaryColors={complementaryColors} handleBlur={handleModal} expanded={expanded} setExpanded={setExpanded}/>}
+      {expanded && <AccentColors complementaryColors={complementaryColors} expanded={expanded} setExpanded={setExpanded}/>}
     </div>
   );
 }
