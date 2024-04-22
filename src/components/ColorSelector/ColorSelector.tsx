@@ -32,12 +32,13 @@ export function ColorSelector({ addColor}: Props) {
     }
     if (error) setError(false)
     addColor({ name, hex});
+    setName("")
   };
 
   return (
     <>
     <div className="color-selector-container">
-      <Name update={setName}/>
+      <Name update={setName} name={name}/>
       <Color update={setHex} />
       <button className={'color-save-btn'} onClick={handleSaveColor}>Save Color</button>
     </div>
@@ -46,7 +47,7 @@ export function ColorSelector({ addColor}: Props) {
   );
 }
 
-function Name({ update }: Update) {
+function Name({ update, name }: Update) {
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     update(event.target.value);
   };
@@ -58,6 +59,7 @@ function Name({ update }: Update) {
         id="colorName"
         name="colorName"
         type="text"
+        value={name}
         onChange={onChange}
         required
         placeholder="Enter a unique color name"
