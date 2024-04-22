@@ -1,7 +1,7 @@
 import { HexColor, RGB } from "../../types";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import "./AccentColors.css";
-import AccentColor from "../AccentColor/AccentColor.tsx";
+import "./MonochromeColorsCard.css";
+import MonochromeColor from "../MonochromeColor/MonochromeColor.tsx";
 import { handleComplementaryColors, rgbToHex } from "../../util";
 
 type AccentColorProps = {
@@ -10,7 +10,7 @@ type AccentColorProps = {
   setExpanded: Dispatch<SetStateAction<boolean>>;
 }
 
-const AccentColors = ({ hex, expanded, setExpanded }: AccentColorProps) => {
+const MonochromeColorsCard = ({ hex, expanded, setExpanded }: AccentColorProps) => {
   const [complementHex, setComplementHex] = useState<string[]>([]);
   const [complementaryColors, setComplementaryColors] = useState<RGB[]>([]);
 
@@ -37,10 +37,10 @@ const AccentColors = ({ hex, expanded, setExpanded }: AccentColorProps) => {
     </div>
 
     <div className={"accent-colors-container"}>
-      {complementHex.map((color, i) => <AccentColor color={color} key={i} />)}
+      {complementHex.map((color, i) => <MonochromeColor color={color} key={i} />)}
     </div>
   </dialog>);
 };
 
 
-export default AccentColors;
+export default MonochromeColorsCard;

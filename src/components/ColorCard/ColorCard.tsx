@@ -2,7 +2,7 @@ import { Color, HexColor } from "../../types";
 import { getLegibleTextColor } from "../../util";
 import './ColorCard.css'
 import React, { ChangeEvent, useState } from "react";
-import AccentColors from "../AccentColors/AccentColors.tsx";
+import MonochromeColorsCard from "../MonochromeColorsCard/MonochromeColorsCard.tsx";
 
 interface Props {
   color: Color;
@@ -37,7 +37,7 @@ export function ColorCard({
       <div className={'color-card-picker'}>
         <input name="color-card-selection" id="color" type="color" value={backgroundColor} onChange={e=>handleChange(e)}/>
       </div>
-      {expanded && <AccentColors hex={newHex} expanded={expanded} setExpanded={setExpanded}/>}
+      {expanded && <MonochromeColorsCard hex={newHex} expanded={expanded} setExpanded={setExpanded}/>}
     </div>
   );
 }

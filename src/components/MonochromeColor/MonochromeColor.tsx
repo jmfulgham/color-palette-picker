@@ -1,11 +1,11 @@
-import "./AccentColor.css";
+import "./MonochromeColor.css";
 
 interface AccentColorProps {
   color: string;
   key: number;
 }
 
-const AccentColor = ({ color, key }: AccentColorProps) => {
+const MonochromeColor = ({ color, key }: AccentColorProps) => {
   return (<div className={'parent'}>
     <div className={`accent-color`} style={{ backgroundColor: color }} key={`accent-color-${key}`} />
     <div className={'color-code'}>
@@ -14,4 +14,4 @@ const AccentColor = ({ color, key }: AccentColorProps) => {
   </div>);
 }
 
-export default AccentColor;
+export default MonochromeColor;
