@@ -2,19 +2,26 @@ import { HexColor, RGB } from "../../types";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import "./AccentColors.css";
 import AccentColor from "../AccentColor/AccentColor.tsx";
-import { rgbToHex } from "../../util";
+import { handleComplementaryColors, rgbToHex } from "../../util";
 
 type AccentColorProps = {
   expanded: boolean;
+  hex: any;
   setExpanded: Dispatch<SetStateAction<boolean>>;
-  complementaryColors: RGB[];
 }
 
-const AccentColors = ({ expanded, setExpanded, complementaryColors }: AccentColorProps) => {
+const AccentColors = ({ hex, expanded, setExpanded }: AccentColorProps) => {
   const [complementHex, setComplementHex] = useState<string[]>([]);
+  const [complementaryColors, setComplementaryColors] = useState<RGB[]>([]);
+
   const handleClose = () => {
     setExpanded(false);
   };
+
+  useEffect(()=>{
+    setComplementaryColors(handleComplementaryColors(hex))
+  }, [hex])
+
 
   useEffect(() => {
     let hexCodes: HexColor[] = complementaryColors.map((color) => (rgbToHex(color)));

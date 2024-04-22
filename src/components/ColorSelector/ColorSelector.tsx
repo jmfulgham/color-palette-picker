@@ -13,6 +13,11 @@ interface Props {
   addColor: (color: Color) => void;
 }
 
+interface Update {
+  // @TODO: implement stricter type than `any`.
+  update: Dispatch<SetStateAction<any>>;
+}
+
 export function ColorSelector({ addColor}: Props) {
   const [name, setName] = useState("");
 
@@ -27,7 +32,6 @@ export function ColorSelector({ addColor}: Props) {
     }
     if (error) setError(false)
     addColor({ name, hex});
-    // handleColors()
   };
 
   return (
@@ -40,11 +44,6 @@ export function ColorSelector({ addColor}: Props) {
       {error && <p className={'error-text'}>Please add a name</p>}
       </>
   );
-}
-
-interface Update {
-  // @TODO: implement stricter type than `any`.
-  update: Dispatch<SetStateAction<any>>;
 }
 
 function Name({ update }: Update) {

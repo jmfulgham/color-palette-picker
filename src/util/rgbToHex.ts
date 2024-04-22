@@ -12,6 +12,5 @@ export function rgbToHex(colorCode: RGB): HexColor {
   if (b.length == 1)
     b = "0" + b;
 
-  console.log(colorCode)
   return `#${r}${g}${b}`;
 }

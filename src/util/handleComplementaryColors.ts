@@ -1,8 +1,8 @@
 import { hexToRgb } from "./hexToRgb.ts";
-import { Color,  RGB } from "../types";
+import {HexColor, RGB } from "../types";
 
-export function handleComplementaryColors(color: Color){
-  const rgbCode = hexToRgb(color.hex);
+export function handleComplementaryColors(hex: HexColor){
+  const rgbCode = hexToRgb(hex);
   const decreaseColor: RGB = { r: 0, g: 0, b: 0 }
   const highColor: RGB = { r: 0, g: 0, b: 0 }
   const lowColor: RGB = { r: 0, g: 0, b: 0 }
